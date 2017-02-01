@@ -1,30 +1,34 @@
 # packages only need to be installed once per dev machine
 #install.packages("jsonlite")
 #install.packages("httr")
+#install.packages("devtools")
 
 library(jsonlite)
 library(httr)
 library(dplyr)
+library(devtools)
 
 # Make a variable base.url that has the same base url from the poke api documentation.
 # (Hint: visit http://pokeapi.co/ to find the base url)
-
+base.url <- "http://pokeapi.co/api/v2/"
 
 # Make a variable called movie that has the names of your favorite pokemon
 # be aware of casing! 
 # There are multiple ways to call the pokemon. What are the 2 ways you can call 
 # it with the Poke API? 
-
+movie <- c("skarmory", "blaziken", "breloom")
+pokees <- c("227", "257", "286")
 
 # Make a variable called pokemon url that holds your favorite pokemon's url 
-
+url1 <- paste0(base.url, "pokemon/", movie)
+url2 <- paste0(base.url, "pokemon/", pokees)
 
 # Use the GET function to call the url, store it in a variable called response
-
+pokemonJSON1 <- GET(url1[1])
 
 # Use the names function to learn more response. Print it out. It will return a list of ten 
 # names within the response object. You can think of the list names as column names. 
-
+names(pokemonJSON1)
 
 # Within the printed list the most important values we are looking at is 
 # 'status_code'. It will tell us if our API worked with the network. 
@@ -36,7 +40,7 @@ library(dplyr)
 # Now that you have confirmed your URL is working, let's read in the JSON file
 # create a variable body that stores the data from the URL
 # what function did we use to extract the data from response?
-
+pokemonJSON1$headers
 
 # create a variable poke.data that will convert the JSON string into a list
 
